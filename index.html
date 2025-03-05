@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoinUp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('back.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            margin: 10px;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 10px;
+            background: white;
+            box-shadow: 0 0 5px gray;
+            padding: 10px;
+            z-index: 1000;
+            border-radius: 10px;
+        }
+        .menu a {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: black;
+        }
+        .menu a:hover {
+            background: lightgray;
+        }
+        .logo {
+            height: 50px;
+            cursor: pointer;
+        }
+        .plus {
+            font-size: 24px;
+            text-decoration: none;
+            background: green;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+        .center-text-container {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            text-align: center;
+        }
+        .center-text {
+            font-size: 80px;
+            font-weight: bold;
+            font-family: "Times New Roman", serif;
+        }
+        .info-container {
+            position: absolute;
+            top: 70%; /* Было 55%, теперь ниже */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 800px;
+        }
+        .info-text {
+            font-size: 20px;
+            line-height: 1.5;
+            font-family: Arial, sans-serif;
+            flex: 1;
+        }
+        .info-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a onclick="toggleMenu()"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
+        <div class="menu" id="menu">
+    <a href="environmental.html">Environmental events</a>
+    <a href="social.html">Social events</a>
+    <a href="edu.html">Educational events</a>
+</div>
+
+        <a href="plus.html" class="plus">+</a>
+    </div>
+
+    <div class="center-text-container">
+        <div class="center-text">Welcome!</div>
+    </div>
+
+    <div class="info-container">
+        <div class="info-text">
+            Join Up is a program for volunteers from Kazakhstan. At the moment, only the city of Almaty is available to us. 
+            In the future, we want to expand to the whole country. Join Up is a website where event organizers can post events, 
+            which provides easier access to finding volunteers. Thank you for using us!
+        </div>
+        <img src="picture.jpg" class="info-image" alt="JoinUp Image">
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
+    </script>
+
+</body>
+</html>
+
+
