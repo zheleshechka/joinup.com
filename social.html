@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Events - JoinUp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('back.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            margin: 10px;
+        }
+        .logo {
+            height: 50px;
+            cursor: pointer;
+        }
+        .center-text-container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            width: 60%;
+            margin: 20px auto;
+        }
+        .center-text {
+            font-size: 50px;
+            font-weight: bold;
+            font-family: "Times New Roman", serif;
+        }
+        .events-container {
+            background: url('middle.jpg') no-repeat center center/cover;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 900px;
+            width: 90%;
+            min-height: 400px;
+            margin: auto;
+            overflow-y: auto;
+        }
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .menu-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            top: 35px;
+            right: 10px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .menu button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+        }
+        .menu button:hover {
+            background: lightgray;
+        }
+        .remove-btn {
+            color: red;
+        }
+        .edit-container {
+            display: none;
+        }
+        .edit-container textarea,
+        .edit-container input {
+            width: 100%;
+            margin-top: 5px;
+            padding: 5px;
+        }
+        .edit-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .edit-actions button {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .save-btn {
+            background: green;
+            color: white;
+        }
+        .cancel-btn {
+            background: gray;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="nado.html"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
+    </div>
+
+    <div class="center-text-container">
+        <div class="center-text">Social Events</div>
+    </div>
+
+    <div class="events-container" id="event-list">
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let events = JSON.parse(localStorage.getItem("events")) || [];
+            let eventList = document.getElementById("event-list");
+
+            events.forEach((event, index) => {
+                if (event.type === "social") {
+                    let eventDiv = document.createElement("div");
+                    eventDiv.classList.add("event-card");
+
+                    eventDiv.innerHTML = `
+                        <div class="menu-button" onclick="toggleMenu(this)">:</div>
+                        <div class="menu">
+                            <button onclick="editPost(${index}, this)">Edit</button>
+                            <button class="remove-btn" onclick="removePost(${index})">Remove</button>
+                        </div>
+                        <div class="view-container">
+                            <h3>${event.location} - ${event.date}</h3>
+                            <p><strong>Participants:</strong> ${event.participants}</p>
+                            <p><strong>Description:</strong> ${event.description}</p>
+                            <p><strong>Contact:</strong> ${event.contacts}</p>
+                        </div>
+                        <div class="edit-container">
+                            <input type="text" value="${event.location}" class="edit-location">
+                            <input type="date" value="${event.date}" class="edit-date">
+                            <input type="number" value="${event.participants}" class="edit-participants">
+                            <textarea class="edit-description">${event.description}</textarea>
+                            <input type="text" value="${event.contacts}" class="edit-contacts">
+                            <div class="edit-actions">
+                                <button class="cancel-btn" onclick="cancelEdit(this)">Cancel</button>
+                                <button class="save-btn" onclick="saveEdit(${index}, this)">Save</button>
+                            </div>
+                        </div>
+                    `;
+                    eventList.appendChild(eventDiv);
+                }
+            });
+        });
+
+        function toggleMenu(button) {
+            let menu = button.nextElementSibling;
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        function removePost(index) {
+            let events = JSON.parse(localStorage.getItem("events")) || [];
+            events.splice(index, 1);
+            localStorage.setItem("events", JSON.stringify(events));
+            location.reload();
+        }
+
+        function editPost(index, button) {
+            let post = button.closest(".event-card");
+            post.querySelector(".view-container").style.display = "none";
+            post.querySelector(".edit-container").style.display = "block";
+        }
+
+        function cancelEdit(button) {
+            let post = button.closest(".event-card");
+            post.querySelector(".view-container").style.display = "block";
+            post.querySelector(".edit-container").style.display = "none";
+        }
+
+        function saveEdit(index, button) {
+            let post = button.closest(".event-card");
+            let events = JSON.parse(localStorage.getItem("events")) || [];
+
+            events[index].location = post.querySelector(".edit-location").value;
+            events[index].date = post.querySelector(".edit-date").value;
+            events[index].participants = post.querySelector(".edit-participants").value;
+            events[index].description = post.querySelector(".edit-description").value;
+            events[index].contacts = post.querySelector(".edit-contacts").value;
+
+            localStorage.setItem("events", JSON.stringify(events));
+            location.reload();
+        }
+    </script>
+
+</body>
+</html>

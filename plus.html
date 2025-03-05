@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event - JoinUp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('back.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            margin: 10px;
+        }
+        .logo {
+            height: 50px;
+            cursor: pointer;
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            margin: 50px auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+        .submit-btn {
+            background: green;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .submit-btn:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="nado.html"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
+    </div>
+
+    <div class="container">
+        <h2>Add New Event</h2>
+        <form onsubmit="saveEvent(event)">
+            <label for="location">Location:</label>
+            <input type="text" id="location" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+
+            <label for="event_type">Event Type:</label>
+            <select id="event_type" required>
+                <option value="environmental">Environmental</option>
+                <option value="social">Social</option>
+                <option value="educational">Educational</option>
+            </select>
+
+            <label for="participants">Participants Needed:</label>
+            <input type="number" id="participants" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" required></textarea>
+
+            <label for="contacts">Contact Info:</label>
+            <input type="text" id="contacts" required>
+
+            <button type="submit" class="submit-btn">Publish</button>
+        </form>
+    </div>
+
+    <script>
+        function saveEvent(event) {
+            event.preventDefault();
+
+            let newEvent = {
+                location: document.getElementById("location").value,
+                date: document.getElementById("date").value,
+                type: document.getElementById("event_type").value,
+                participants: document.getElementById("participants").value,
+                description: document.getElementById("description").value,
+                contacts: document.getElementById("contacts").value
+            };
+
+            let events = JSON.parse(localStorage.getItem("events")) || [];
+            events.push(newEvent);
+            localStorage.setItem("events", JSON.stringify(events));
+
+            window.location.href = "nado.html";
+        }
+    </script>
+
+</body>
+</html>
+
