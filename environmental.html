@@ -125,7 +125,7 @@
 <body>
 
     <div class="header">
-        <a href="nado.html"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
+        <a href="index.html"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
     </div>
 
     <div class="center-text-container">
@@ -139,7 +139,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             let events = JSON.parse(localStorage.getItem("events")) || [];
             let eventList = document.getElementById("event-list");
-
+eventList.innerHTML = "";
             events.forEach((event, index) => {
                 if (event.type === "environmental") {
                     let eventDiv = document.createElement("div");
@@ -183,7 +183,7 @@
             let events = JSON.parse(localStorage.getItem("events")) || [];
             events.splice(index, 1);
             localStorage.setItem("events", JSON.stringify(events));
-            location.reload();
+            loadEvents();;
         }
 
         function editPost(index, button) {
@@ -209,7 +209,7 @@
             events[index].contacts = post.querySelector(".edit-contacts").value;
 
             localStorage.setItem("events", JSON.stringify(events));
-            location.reload();
+            loadEvents();
         }
     </script>
 
