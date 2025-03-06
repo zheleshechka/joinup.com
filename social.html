@@ -125,7 +125,7 @@
 <body>
 
     <div class="header">
-        <a href="nado.html"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
+        <a href="index.html"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
     </div>
 
     <div class="center-text-container">
@@ -139,7 +139,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             let events = JSON.parse(localStorage.getItem("events")) || [];
             let eventList = document.getElementById("event-list");
-
+eventList.innerHTML = "";
             events.forEach((event, index) => {
                 if (event.type === "social") {
                     let eventDiv = document.createElement("div");

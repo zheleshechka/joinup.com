@@ -139,7 +139,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             let events = JSON.parse(localStorage.getItem("events")) || [];
             let eventList = document.getElementById("event-list");
-
+eventList.innerHTML = "";
             events.forEach((event, index) => {
                 if (event.type === "educational") {
                     let eventDiv = document.createElement("div");
