@@ -183,7 +183,7 @@ eventList.innerHTML = "";
             let events = JSON.parse(localStorage.getItem("events")) || [];
             events.splice(index, 1);
             localStorage.setItem("events", JSON.stringify(events));
-            loadEvents();;
+            location.reload();
         }
 
         function editPost(index, button) {
@@ -209,7 +209,7 @@ eventList.innerHTML = "";
             events[index].contacts = post.querySelector(".edit-contacts").value;
 
             localStorage.setItem("events", JSON.stringify(events));
-            loadEvents();
+            location.reload();
         }
     </script>
 
