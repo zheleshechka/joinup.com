@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Environmental Events - JoinUp</title>
+    <title>Social Events - JoinUp</title>
     <style>
         * {
             margin: 0;
@@ -24,37 +24,9 @@
             border-radius: 15px;
             margin: 10px;
         }
-       .menu {
-            display: none;
-            position: absolute;
-            top: 60px;
-            left: 10px;
-            background: white;
-            box-shadow: 0 0 5px gray;
-            padding: 10px;
-            z-index: 1000;
-            border-radius: 10px;
-        }
-        .menu a {
-            display: block;
-            padding: 5px;
-            text-decoration: none;
-            color: black;
-        }
-        .menu a:hover {
-            background: lightgray;
-        }
         .logo {
             height: 50px;
             cursor: pointer;
-        }
-        .plus {
-            font-size: 24px;
-            text-decoration: none;
-            background: green;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 50%;
         }
         .center-text-container {
             text-align: center;
@@ -153,18 +125,14 @@
 <body>
 
     <div class="header">
-        <a onclick="toggleMenu()"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
-        <div class="menu" id="menu">
-    <a href="index.html">Main Page</a>
-    <a href="environmental.html">Environmental events</a>
-    <a href="social.html">Social events</a>
-    <a href="edu.html">Educational events</a>
-</div>
-        <a href="plus.html" class="plus">+</a>
+        <a href="index.html"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
     </div>
 
     <div class="center-text-container">
-        <div class="center-text">Welcome!</div>
+        <div class="center-text">Environmental Events</div>
+    </div>
+
+    <div class="events-container" id="event-list">
     </div>
 
     <script>
