@@ -134,10 +134,7 @@
     </div>
 
     <script>
-        function toggleMenu() {
-            var menu = document.getElementById("menu");
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
-        }
+       
         function saveEvent(event) {
             event.preventDefault();
 
@@ -156,7 +153,10 @@
 
             window.location.href = "index.html";
         }
-        
+         function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
 
     </script>
 
