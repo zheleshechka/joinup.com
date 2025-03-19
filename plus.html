@@ -155,9 +155,18 @@
             window.location.href = "index.html";
         }
          function toggleMenu() {
-            var menu = document.getElementById("menu");
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        var menu = document.getElementById("menu");
+        menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+
+    document.addEventListener("click", function(event) {
+        var menu = document.getElementById("menu");
+        var logo = document.querySelector(".logo");
+
+        if (menu.style.display === "block" && !menu.contains(event.target) && !logo.contains(event.target)) {
+            menu.style.display = "none";
         }
+    });
 
     </script>
 
