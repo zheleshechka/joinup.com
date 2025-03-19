@@ -15,7 +15,6 @@
             font-family: Arial, sans-serif;
         }
         .header {
-            height: 70px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -25,29 +24,10 @@
             border-radius: 15px;
             margin: 10px;
         }
-        .menu {
-            display: none;
-            position: absolute;
-            top: 60px;
-            left: 10px;
-            background: white;
-            box-shadow: 0 0 5px gray;
-            padding: 10px;
-            z-index: 1000;
-            border-radius: 10px;
+        .logo {
+            height: 50px;
+            cursor: pointer;
         }
-        .menu a {
-            display: block;
-            padding: 5px;
-            text-decoration: none;
-            color: black;
-        }
-        .menu a:hover {
-            background: lightgray;
-        }
-       .logo {
-    height: 50px;
-}
         .container {
             width: 90%;
             max-width: 500px;
@@ -95,15 +75,9 @@
 </head>
 <body>
 
-    
-     <div class="header">
-        <a onclick="toggleMenu()"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
-        <div class="menu" id="menu">
-    <a href="nado.html">Main Page</a>
-    <a href="environmental.html">Environmental events</a>
-    <a href="social.html">Social events</a>
-    <a href="edu.html">Educational events</a>
-</div>
+    <div class="header">
+        <a href="index.html"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
+    </div>
 
     <div class="container">
         <h2>Add New Event</h2>
@@ -135,10 +109,6 @@
     </div>
 
     <script>
-        function toggleMenu() {
-            var menu = document.getElementById("menu");
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
-        }
         function saveEvent(event) {
             event.preventDefault();
 
@@ -155,10 +125,11 @@
             events.push(newEvent);
             localStorage.setItem("events", JSON.stringify(events));
 
-            window.location.href = "nado.html";
+            window.location.href = "index.html";
         }
     </script>
 
 </body>
 </html>
+
 
