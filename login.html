@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - JoinUp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('back.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            margin: 10px;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 10px;
+            background: white;
+            box-shadow: 0 0 5px gray;
+            padding: 10px;
+            z-index: 1000;
+            border-radius: 10px;
+        }
+        .menu a {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: black;
+        }
+        .menu a:hover {
+            background: lightgray;
+        }
+        .logo {
+            height: 50px;
+            cursor: pointer;
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            margin: 50px auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .submit-btn {
+            background: green;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .submit-btn:hover {
+            background: darkgreen;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a onclick="toggleMenu()"><img src="logo.jpg" class="logo" alt="JoinUp"></a>
+        <div class="menu" id="menu">
+            <a href="index.html">Main Page</a>
+            <a href="environmental.html">Environmental events</a>
+            <a href="social.html">Social events</a>
+            <a href="edu.html">Educational events</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Login</h2>
+        <form onsubmit="login(event)">
+            <input type="text" id="loginUsername" placeholder="Username" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function login(event) {
+            event.preventDefault();
+            
+            let username = document.getElementById("loginUsername").value;
+            let password = document.getElementById("loginPassword").value;
+
+            if (localStorage.getItem(username) === password) {
+                alert("Login successful!");
+                localStorage.setItem("loggedInUser", username);
+                window.location.href = "index.html";
+            } else {
+                alert("Invalid username or password!");
+            }
+        }
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
+
+        
+    </script>
+
+</body>
+</html>
